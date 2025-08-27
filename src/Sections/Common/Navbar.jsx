@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
     { path: "/plants", label: "Plants" },
@@ -11,6 +12,16 @@ export default function Navbar() {
     { path: "/cart", label: "Cart" },
     { path: "/admin", label: "Admin" },
   ];
+
+  const hideOnRoutes = [
+    "/login",
+    "/signup",
+    "/reset-password"
+  ];
+
+  if (hideOnRoutes.includes(location.pathname)) {
+    return null;
+  }
 
   return (
     <nav className="bg-green-700 text-white shadow-md">
@@ -28,8 +39,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
-                  `hover:text-gray-200 transition ${
-                    isActive ? "underline underline-offset-4" : ""
+                  `hover:text-gray-200 transition ${isActive ? "underline underline-offset-4" : ""
                   }`
                 }
               >

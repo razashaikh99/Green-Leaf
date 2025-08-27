@@ -1,3 +1,28 @@
+Purpose of the Project ........
+
+English -- “Greenleaf is a web application that helps plant lovers easily find, buy, and care for plants while providing nurseries a platform to manage their digital catalog and share gardening knowledge.” 🌱
+
+Urdu -- “Hamne MERN stack pe Greenleaf project banaya hai. Ye ek gardening aur plants management application hai jahan user apne favourite plants purchase kar sakta hai, My Garden list me add karke unke reminders set kar sakta hai, aur gardening blogs parh sakta hai. Admin ke liye panel hai jahan se wo plants aur blogs manage kar sakta hai.” 🌱
+
+
+👤 User (Plant Lover / Customer) ----
+1. Account banata hai (signup/login)
+2. Plant catalog browse karta hai (search, filter, detail)
+3. Apne pasandida plants My Garden me add karta hai
+4. Watering/fertilizing ke reminders set karta hai
+5. Plants aur tools ko Cart me add karta hai
+6. Gardening blogs aur tips padhta hai
+7. Reviews aur feedback deta hai
+
+🔑 Admin (Nursery Owner / System Manager) ----
+1. Plants ko add, update, delete karta hai
+2. Blogs aur seasonal guides manage karta hai
+3. Reviews ko approve/remove karta hai
+4. (Optional) Basic reports dekh sakta hai (inventory / sales)
+
+
+Routes ...............
+
 src/
 │
 ├── sections/              # all main app sections
