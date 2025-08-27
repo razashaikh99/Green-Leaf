@@ -1,0 +1,56 @@
+src/
+│
+├── sections/              # all main app sections
+│   ├── auth/              # ✅ authentication done
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   └── ResetPassword.jsx
+│   │
+│   ├── plantCatalog/      # ✅ catalog done
+│   │   ├── PlantList.jsx
+│   │   ├── PlantCard.jsx
+│   │   └── PlantFilters.jsx
+│   │
+│   ├── myGarden/          # 🌿 next step
+│   │   ├── MyGarden.jsx          # show plants user added
+│   │   └── ReminderForm.jsx      # add reminders
+│   │
+│   ├── cart/              # 🛒 after myGarden
+│   │   ├── Cart.jsx              # show all cart items
+│   │   └── CartItem.jsx          # single cart row
+│   │
+│   ├── blogs/             # 📰 gardening tips/articles
+│   │   ├── BlogList.jsx
+│   │   ├── BlogCard.jsx
+│   │   └── BlogDetail.jsx
+│   │
+│   ├── admin/             # 🔑 admin features
+│   │   ├── Dashboard.jsx
+│   │   ├── ManagePlants.jsx
+│   │   └── ManageBlogs.jsx
+│   │
+│   └── common/            # 🌍 reusable components
+│       ├── Navbar.jsx
+│       ├── Footer.jsx
+│       └── ProtectedRoute.jsx
+│
+├── context/               # global state management
+│   ├── AuthContext.jsx          # user login/logout
+│   ├── CartContext.jsx          # cart state
+│   └── GardenContext.jsx        # myGarden state
+│
+├── App.jsx
+└── main.jsx
+
+/////////////////////// backend ////////////////////
+
+server/
+├── config/
+│   └── db.js          # MongoDB connection
+├── controllers/       # Business logic
+├── models/            # Mongoose schemas
+├── routes/            # API routes
+├── middleware/        # Middlewares (auth, error handler)
+├── .env               # Env variables
+├── server.js          # Main entry
+└── package.json
