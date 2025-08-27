@@ -90,7 +90,7 @@ export default function Login() {
                     {/* Forget Password link */}
                     <div className="text-left">
                         <Link
-                            to="/reset-password"
+                            to="/forget-password"
                             className="text-sm text-green-600 font-medium hover:underline"
                         >
                             Forgot Password?
