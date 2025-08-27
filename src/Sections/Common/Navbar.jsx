@@ -16,7 +16,9 @@ export default function Navbar() {
   const hideOnRoutes = [
     "/login",
     "/signup",
-    "/reset-password"
+    "/reset-password",
+    "/forget-password",
+    "/verify-code"
   ];
 
   if (hideOnRoutes.includes(location.pathname)) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiMail, FiLock } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Login() {
@@ -86,6 +87,16 @@ export default function Login() {
                         </div>
                     </div>
 
+                    {/* Forget Password link */}
+                    <div className="text-left">
+                        <Link
+                            to="/reset-password"
+                            className="text-sm text-green-600 font-medium hover:underline"
+                        >
+                            Forgot Password?
+                        </Link>
+                    </div>
+
                     {/* Submit Button */}
                     <button
                         type="submit"
@@ -99,12 +110,12 @@ export default function Login() {
                 {/* Extra links */}
                 <p className="text-center text-xs sm:text-sm text-gray-700 mt-6">
                     Don’t have an account?{" "}
-                    <a
-                        href="/signup"
+                    <Link
+                        to="/signup"
                         className="cursor-pointer text-green-600 font-semibold hover:underline"
                     >
                         Sign up
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

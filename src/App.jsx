@@ -28,6 +28,8 @@ import ManageBlogs from "./Sections/Admin/ManageBlogs";
 import Login from "./Sections/Auth/Login";
 import Signup from "./Sections/Auth/Signup";
 import ResetPassword from "./Sections/Auth/ResetPassword";
+import ForgetPassword from "./Sections/Auth/ForgetPassword";
+import VerifyCode from "./Sections/Auth/VerifyCode";
 
 // Plant Catalog
 import PlantList from "./Sections/PlantCatalog/PlantList";
@@ -57,6 +59,8 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/reset-password" element={<ResetPassword />} />
+                  <Route path="/forget-password" element={<ForgetPassword />} />
+                  <Route path="/verify-code" element={<VerifyCode />} />
 
                   {/* Admin Routes (Protected) */}
                   <Route

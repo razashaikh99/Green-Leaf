@@ -1,59 +1,121 @@
 import React, { useState } from "react";
+import { FiLock } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function ResetPassword() {
-  const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    // Yahan tum backend ko call karoge (password reset ke liye)
-    console.log("Reset password link send to:", email);
-    alert("If this email is registered, you will receive reset instructions.");
-  };
+        if (password !== confirmPassword) {
+            toast.error("❌ Passwords do not match!");
+            return;
+        }
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Reset Your Password
-        </h2>
-        <p className="text-sm text-gray-600 text-center mb-6">
-          Enter your email address and we’ll send you instructions to reset your password.
-        </p>
+        try {
+            setLoading(true);
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Email */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="Enter your registered email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-              required
-            />
-          </div>
+            // ⚡ Yahan backend API call hoga (reset password ke liye)
+            // Example:
+            // const res = await fetch("http://localhost:5000/api/auth/reset-password", {
+            //   method: "POST",
+            //   headers: { "Content-Type": "application/json" },
+            //   body: JSON.stringify({ password }),
+            // });
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
-          >
-            Send Reset Link
-          </button>
-        </form>
+            toast.success("✅ Password has been reset successfully!");
+            setPassword("");
+            setConfirmPassword("");
+        } catch (err) {
+            toast.error("❌ Failed to reset password.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        {/* Back to Login */}
-        <p className="text-center text-sm text-gray-600 mt-6">
-          Remember your password?{" "}
-          <a href="/login" className="text-green-600 font-medium hover:underline">
-            Login
-          </a>
-        </p>
-      </div>
-    </div>
-  );
+    return (
+        <div
+            className="flex items-center justify-center min-h-screen bg-cover bg-center relative px-4"
+            style={{
+                backgroundImage:
+                    "url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80')",
+            }}
+        >
+            {/* Overlay Blur */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur"></div>
+
+            {/* Reset Password Card */}
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg bg-white/90 p-6 sm:p-8 rounded-2xl shadow-2xl backdrop-blur-md">
+                <h2 className="text-2xl sm:text-3xl font-bold text-center bg-gradient-to-r from-green-600 to-emerald-400 bg-clip-text text-transparent mb-4">
+                    Reset Password
+                </h2>
+
+                <p className="text-sm sm:text-base text-gray-700 text-center mb-6">
+                    Enter your new password below.
+                </p>
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* New Password */}
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2">
+                            New Password
+                        </label>
+                        <div className="relative">
+                            <FiLock className="absolute top-3 left-3 text-gray-400 text-lg" />
+                            <input
+                                type="password"
+                                placeholder="Enter new password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-sm sm:text-base"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2">
+                            Confirm Password
+                        </label>
+                        <div className="relative">
+                            <FiLock className="absolute top-3 left-3 text-gray-400 text-lg" />
+                            <input
+                                type="password"
+                                placeholder="Re-enter new password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-sm sm:text-base"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="cursor-pointer w-full bg-gradient-to-r from-green-600 to-emerald-400 text-white py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50 shadow-md font-medium text-sm sm:text-base"
+                    >
+                        {loading ? "Resetting..." : "Reset Password"}
+                    </button>
+                </form>
+
+                {/* Back to Login */}
+                <p className="text-center text-xs sm:text-sm text-gray-700 mt-6">
+                    Remembered your password?{" "}
+                    <Link
+                        to="/login"
+                        className="cursor-pointer text-green-600 font-semibold hover:underline"
+                    >
+                        Login
+                    </Link>
+                </p>
+            </div>
+        </div>
+    );
 }

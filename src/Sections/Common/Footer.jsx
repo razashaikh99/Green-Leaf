@@ -7,7 +7,9 @@ export default function Footer() {
   const hideOnRoutes = [
     "/login",
     "/signup",
-    "/reset-password"
+    "/reset-password",
+    "/forget-password",
+    "/verify-code"
   ];
 
   if (hideOnRoutes.includes(location.pathname)) {
